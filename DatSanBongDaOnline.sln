@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatSanBongDaOnline", "DatSanBongDaOnline\DatSanBongDaOnline.csproj", "{02E23189-F9E0-4A53-B541-41F59801AAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{5A6A7F3A-AE7E-4577-833C-9204D063D8D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02E23189-F9E0-4A53-B541-41F59801AAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E23189-F9E0-4A53-B541-41F59801AAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E23189-F9E0-4A53-B541-41F59801AAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E23189-F9E0-4A53-B541-41F59801AAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A6A7F3A-AE7E-4577-833C-9204D063D8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A6A7F3A-AE7E-4577-833C-9204D063D8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A6A7F3A-AE7E-4577-833C-9204D063D8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A6A7F3A-AE7E-4577-833C-9204D063D8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

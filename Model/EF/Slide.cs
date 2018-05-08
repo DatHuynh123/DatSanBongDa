@@ -1,0 +1,35 @@
+namespace Model.EF
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Slide")]
+    public partial class Slide
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaSL { get; set; }
+
+        public int? IDSL { get; set; }
+
+        [StringLength(250)]
+        public string Image { get; set; }
+
+        public int? DisplayOrder { get; set; }
+
+        [StringLength(250)]
+        public string Link { get; set; }
+
+        [StringLength(50)]
+        public string Description { get; set; }
+
+        public DateTime? Createdate { get; set; }
+
+        public bool? Status { get; set; }
+
+        public virtual User User { get; set; }
+    }
+}
