@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,7 +13,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="~/Asset/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Asset/client/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    
+    <link href="/Asset/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Asset/Client/css/jquery-ui.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="/Asset/admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/Asset/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/Asset/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
     <script type="text/javascript" src="~/Asset/client/js/jquery-1.7.2.min.js"></script>
+    <script src="/Asset/Client/js/jquery-ui.js"></script>
     <script type="text/javascript" src="~/Asset/client/js/move-top.js"></script>
     <script type="text/javascript" src="~/Asset/client/js/easing.js"></script>
     <script type="text/javascript" src="~/Asset/client/js/startstop-slider.js"></script>
@@ -21,33 +33,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="wrap">
         <div class="header">
             <div class="headertop_desc">
-                <div class="call">
-                    <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></span></p>
-                </div>
-                <div class="account_desc">
-                    <ul>
-                        
-                        <li><a href="/Home/DangKi">Đăng Kí</a></li>
-                        <li><a href="/Home/DangNhap">Đăng Nhập</a></li>
-                        <li><a href="/Home/DangNhap">Đăng Xuất</a></li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
+                @{ Html.RenderAction("TopMeNu", "Home");}                
             </div>
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                    <a href="#"><img src="images/logo.png" alt="" /></a>
                 </div>
-                <div class="cart">
-                    <p>
-                        Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2">
-                            0 item(s) - $0.00
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul>
-                        </div>
-                    </p>
-                </div>
+                @{ Html.RenderAction("HeaderCart", "Home");}
                 <script type="text/javascript">
 			function DropDown(el) {
 				this.dd = el;
@@ -82,18 +74,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="menu">
                     <ul>
                         <li class="active"><a href="/Home/index">Trang Chủ</a></li>
-                        <li><a href="/GioiThieu/index">Giới Thiệu</a></li>
+                        <li><a href="/About/index">Giới Thiệu</a></li>
                         <li><a href="#">Đặt Sân</a></li>
                         <li><a href="#">Danh Sách Sân</a></li>
                         <li><a href="#">Tin Khuyến Mãi</a></li>
                         <li><a href="#">Giải Đấu</a></li>
-                        <li><a href="#">Liên Hệ</a></li>
+                        <li><a href="/Contact/Index">Liên Hệ</a></li>
                         <div class="clear"></div>
                     </ul>
                 </div>
                 <div class="search_box">
-                    <form>
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+                    <form action="/tim-kiem" method="get">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Gõ từ khoá"><input type="submit" value="">
                     </form>
                 </div>
                 <div class="clear"></div>
@@ -131,11 +123,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col_1_of_4 span_1_of_4">
                     <h4>Qui Định & Chính Sách</h4>
                     <ul>
-                        <li><a href="contact.html">Sign In</a></li>
-                        <li><a href="index.html">View Cart</a></li>
+                        <li><a href="#">Sign In</a></li>
+                        <li><a href="#">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
-                        <li><a href="contact.html">Help</a></li>
+                        <li><a href="#">Help</a></li>
                     </ul>
                 </div>
                 <div class="col_1_of_4 span_1_of_4">
@@ -173,6 +165,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
                     </script>
                     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+                    <script src="~/Asset/Client/js/Controllers/baseController.js"></script>
+                    @RenderSection("jsFooter", required: false)
 </body>
 </html>
 

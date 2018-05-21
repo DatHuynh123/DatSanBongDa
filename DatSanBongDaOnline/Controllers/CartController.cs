@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using DatSanBongDaOnline.Areas.Admin.Controllers;
+using Model.Dao;
 
 namespace DatSanBongDaOnline.Controllers
 {
@@ -68,48 +69,7 @@ namespace DatSanBongDaOnline.Controllers
             }
             return RedirectToAction("Index");
         }
-        //public ActionResult AddItem(string productId, int quantity)
-        //{
-        //    var product = new SanDao().ViewDetail(productId);
-        //    var cart = Session[CartSession];
-        //    if (cart != null)
-        //    {
-        //        var list = (List<CartItem>)cart;
-        //        if (list.Exists(x => x.sans.MaSan == productId))
-        //        {
-
-        //            foreach (var item in list)
-        //            {
-        //                if (item.sans.MaSan == productId)
-        //                {
-        //                    item.SoLuong += quantity;
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            //tạo mới đối tượng cart item
-        //            var item = new CartItem();
-        //            item.sans = product;
-        //            item.SoLuong = quantity;
-        //            list.Add(item);
-        //        }
-        //        //Gán vào session
-        //        Session[CartSession] = list;
-        //    }
-        //    else
-        //    {
-        //        //tạo mới đối tượng cart item
-        //        var item = new CartItem();
-        //        item.sans = product;
-        //        item.SoLuong = quantity;
-        //        var list = new List<CartItem>();
-        //        list.Add(item);
-        //        //Gán vào session
-        //        Session[CartSession] = list;
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+       
 
 
         //Xóa toàn bộ giỏ hàng
@@ -167,31 +127,30 @@ namespace DatSanBongDaOnline.Controllers
         }
 
         [HttpPost]
-        public ActionResult Payment(int matv, string dichvu, string address)
+        public ActionResult Payment(int mahd,string diachi, string sdt, string nguoidat)
         {
             var order = new HoaDon();
+            order.MaHD = mahd;
             order.NgayDa = DateTime.Now;
-            order.DiaChi = address;
-            order.DichVu = dichvu;
-            order.MaTV = matv;
-
+            order.DiaChi = diachi;            
+            order.SDT = sdt;
+            order.NguoiDat = nguoidat;
             try
             {
                 var id = new HoaDonDao().Insert(order);
                 var cart = (List<CartItem>)Session[CartSession];
-                var detailDao = new HoaDonDao();
-                //  decimal total = 0
-                //foreach (var item in cart)
-                //{
-                //    var orderDetail = new HoaDon();
-                //    orderDetail.MaHD = item.san.MaSan;
-                //    orderDetail.InvoiceID = id;
-                //    orderDetail.PriceSell = item.Product.Price;
-                //    orderDetail.So = item.SoLuong;
-                //    detailDao.Insert(orderDetail);
+                var detailDao = new Model.Dao.CTHDDao();                
+                foreach (var item in cart)
+                {
+                    var orderDetail = new CTHD();
+                    orderDetail.MaHD = id;
+                    orderDetail.MaSan = item.sans.MaSan;
+                    orderDetail.GiaSan = item.sans.DonGia;
+                    orderDetail.SoLuong = item.SoLuong;
+                    detailDao.Insert(orderDetail);
 
 
-                //}
+                }
 
             }
             catch (Exception)
@@ -199,7 +158,7 @@ namespace DatSanBongDaOnline.Controllers
                 //ghi log
                 return Redirect("/loi-thanh-toan");
             }
-            return Redirect("/hoan-thanh");
+            return Redirect("/Cart/Success");
         }
 
         public ActionResult Success()

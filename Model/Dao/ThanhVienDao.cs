@@ -3,10 +3,12 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DatSanBongDaOnline.Areas.Admin.Controllers
+namespace Model.Dao
 {
-    internal class ThanhVienDao
+    public class ThanhVienDao
     {
         DatSanBongDaDbContext db = null;
         public ThanhVienDao()
@@ -19,9 +21,15 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
             db.SaveChanges();
             return thanhVien.MaTV;
         }
-        public IEnumerable<ThanhVien> ListAllPaging(int page, int pageSize)
+        public IEnumerable<ThanhVien> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.ThanhViens.OrderByDescending(x => x.MaTV).ToPagedList(page, pageSize);
+            IQueryable<ThanhVien> model = db.ThanhViens;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Ho.Contains(searchString) || x.Ten.Contains(searchString) || x.DiaChi.Contains(searchString));
+            }
+
+            return model.OrderByDescending(x => x.MaTV).ToPagedList(page, pageSize);
         }
         public bool Update(ThanhVien entity)
         {
@@ -39,7 +47,7 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //logging
                 return false;

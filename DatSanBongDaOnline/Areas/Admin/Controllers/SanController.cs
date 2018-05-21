@@ -1,4 +1,5 @@
-﻿using Model.EF;
+﻿using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,16 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
     {
         private DatSanBongDaDbContext db = new DatSanBongDaDbContext();
         // GET: Admin/San
-        public ActionResult Index(int page = 1, int pageSize = 2)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 4)
         {
             var dao = new SanDao();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString,page, pageSize);
             return View(model);
         }
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.San = new SelectList(db.Sans, "MaSan, TenSan,DonGia,Image,MetaTitle,IDLoai,Hot,MaKM,SoLuong,ThongTin");
             return View();
         }
         [HttpGet]
@@ -51,9 +53,10 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
             }
             return View("Index");
         }
-
         [HttpPost]
-        public ActionResult Create([Bind(Include = "MaSan, TenSan,DonGia,IDLoai,MaKM,SoLuong")] San  model)
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "MaSan, TenSan,DonGia,Image,MetaTitle,IDLoai,Hot,MaKM,SoLuong,ThongTin")] San model)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +64,7 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaSan = new SelectList(db.Sans, "MaSan, TenSan,DonGia,IDLoai,MaKM,SoLuong", model.MaSan);
+            ViewBag.MaSan = new SelectList(db.Sans, "MaSan, TenSan,DonGia,Image,MetaTitle,IDLoai,Hot,MaKM,SoLuong,ThongTin", model.MaSan);
             return View(model);
         }
         [HttpDelete]

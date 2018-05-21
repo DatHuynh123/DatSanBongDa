@@ -21,15 +21,7 @@
                             <div id="products">
                                 <div class="slides_container">
                                     <a href="#" target="_blank"><img src="~/data/img/@Model.Image" alt="" /></a>
-                                </div>
-                                @*<ul class="pagination">
-                                        <li><a href="#"><img src="images/thumbnailslide-1.jpg" alt=" " /></a></li>
-                                        <li><a href="#"><img src="images/thumbnailslide-2.jpg" alt=" " /></a></li>
-                                        <li><a href="#"><img src="images/thumbnailslide-3.jpg" alt=" " /></a></li>
-                                        <li><a href="#"><img src="images/thumbnailslide-4.jpg" alt=" " /></a></li>
-                                        <li><a href="#"><img src="images/thumbnailslide-5.jpg" alt=" " /></a></li>
-                                        <li><a href="#"><img src="images/thumbnailslide-6.jpg" alt=" " /></a></li>
-                                    </ul>*@
+                                </div>                               
                             </div>
                         </div>
                     </div>
@@ -45,11 +37,12 @@
                         <div class="share">
                             <p>Chia sẻ :</p>
                             <ul>
-                                <li><a href="#"><img src="images/facebook.png" alt="" /></a></li>
-                                <li><a href="#"><img src="images/twitter.png" alt="" /></a></li>
+                                <li><a href="#"><img src="~/Asset/Client/images/facebook.png" alt="" /></a></li>
+                                <li><a href="#"><img src="~/Asset/Client/images/twitter.png" alt="" /></a></li>
+                                
                             </ul>
                         </div>
-                        <div class="button"><span><a href="/them-gio-hang?productId=@Model.MaSan&quantity=1">Thêm vào giỏ</a></span></div>
+                        <div class="button"><span><a href="/them-gio-hang?productId=@Model.MaSan&quantity=1">Đặt Sân</a></span></div>
                         <div class="clear"></div>
                     </div>
                     <div class="wish-list">
@@ -70,7 +63,7 @@
                     </ul>
                     <div class="resp-tabs-container">
                         <div class="product-desc">
-                            @Html.Raw(Model.TenSan)
+                            @Html.Raw(Model.ThongTin)
                         </div>
                     </div>
                 </div>
@@ -89,7 +82,7 @@
                     <h3>Sản phẩm liên quan</h3>
                 </div>
                 <div class="see">
-                    <p><a href="/san-pham">Xem tất cả</a></p>
+                    
                 </div>
                 <div class="clear"></div>
             </div>
@@ -102,7 +95,7 @@
                         <a href="@url"><img src="~/data/img/@item.Image" alt="" /></a>
                         <div class="price" style="border:none">
                             <div class="add-cart" style="float:none">
-                                <h4><a href="/them-gio-hang?productId=@item.MaSan&quantity=1">Add to Cart</a></h4>
+                                <h4><a href="/them-gio-hang?productId=@item.MaSan&quantity=1">Đặt Sân</a></h4>
                             </div>
                             <div class="clear"></div>
                         </div>

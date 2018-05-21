@@ -1,0 +1,88 @@
+﻿@model Model.EF.khachhang
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section jsFooter{
+<script src="~/Asset/Client/js/Controllers/userController.js"></script>    
+}
+<div class="content">
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Đăng ký thành viên</h4>
+            <hr />
+            <div class="form-group">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @if (ViewBag.Success != null)
+                {
+                    <div class="alert alert-success">@ViewBag.Success</div>
+                }
+            </div>
+                
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.MaKH, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ho, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Ho, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ho, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Ten, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>      
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.SDT, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+          
+         
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Đăng ký" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

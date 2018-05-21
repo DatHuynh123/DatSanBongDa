@@ -1,4 +1,7 @@
-﻿using Model.EF;
+﻿using DatSanBongDaOnline.Areas.Admin.Models;
+using DatSanBongDaOnline.Common;
+using DatSanBongDaOnline.Models;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,62 +23,31 @@ namespace DatSanBongDaOnline.Controllers
             ViewBag.NewProducts = sanDao.ListNewProduct();            
             return View();
         }
-        [HttpGet]
-        public ActionResult DangNhap()
+        
+        [ChildActionOnly]
+        [OutputCache(Duration = 3600 * 24)]
+        public ActionResult TopMeNu()
         {
-            return View();
-        }
-        //Tạo action đăng nhập
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DangNhap(CustomerLoginModel f)
-        {
-            //kiểm tra tên đăng nhập và MK
-            if (ModelState.IsValid)
+            var cart = Session[CommonConstants.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
             {
-                string sEmail = f.Email;
-                string sMatKhau = f.Password;
-                khachhang tv = db.khachhangs.SingleOrDefault(n => n.Email == sEmail && n.Password == sMatKhau);
-                if (tv != null)
-                {
-                    Session["TaiKhoan"] = tv;
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username or password incorrect");
-                }
+                list = (List<CartItem>)cart;
             }
-            return View(f);
+
+            return PartialView(list);
         }
-        public ActionResult DangXuat()
+        [ChildActionOnly]
+        public PartialViewResult HeaderCart()
         {
-            Session["TaiKhoan"] = null;
-            return RedirectToAction("Index");
-        }
-        //Đăng ký
-        [HttpGet]
-        public ActionResult DangKy()
-        {
-            // setViewBag();
-            return View();
-        }
-        [HttpPost]
-        public ActionResult DangKy(khachhang tv, FormCollection f)
-        {
-            //Kiểm tra captcha hợp lệ
-            if (ModelState.IsValid)
+            var cart = Session[CommonConstants.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
             {
-                ViewBag.ThongBao = "Thêm thành công";
-                //Thêm khách hàng vào csdl
-                db.khachhangs.Add(tv);
-                db.SaveChanges();
+                list = (List<CartItem>)cart;
             }
-            else
-            {
-                ViewBag.ThongBao = "Thêm thất bại";
-            }
-            return View();
-        }
+
+            return PartialView(list);
+        }    
     }
 }

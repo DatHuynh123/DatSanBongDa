@@ -5,23 +5,17 @@
     Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm Hóa Đơn</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>HoaDon</h4>
+        <h4>Nhập thông tin người dùng</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaHD, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            @Html.TextBoxFor(model => model.MaHD, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MaHD, "", new { @class = "text-danger" })
-
-        </div>
+     
         <div class="form-group">
             @Html.LabelFor(model => model.MaSan, htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -64,10 +58,24 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
-         
-                @Html.TextBoxFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-        
+
+            @Html.TextBoxFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NguoiDat, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.TextBoxFor(model => model.NguoiDat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NguoiDat, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.TextBoxFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">

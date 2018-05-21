@@ -3,9 +3,12 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace DatSanBongDaOnline.Areas.Admin.Controllers
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Model.Dao
 {
-    internal class KhachHangDao
+    public class KhachHangDao
     {
         DatSanBongDaDbContext db = null;
         public KhachHangDao()
@@ -18,9 +21,14 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
             db.SaveChanges();
             return khachHang.MaKH;
         }
-        public IEnumerable<khachhang> ListAllPaging(int page, int pageSize)
+        public IEnumerable<khachhang> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.khachhangs.OrderByDescending(x => x.MaKH).ToPagedList(page, pageSize);
+            IQueryable<khachhang> model = db.khachhangs;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Ho.Contains(searchString) || x.Ten.Contains(searchString) || x.DiaChi.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.MaKH).ToPagedList(page, pageSize);
         }
         public bool Update(khachhang entity)
         {
@@ -37,7 +45,7 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //logging
                 return false;
@@ -63,6 +71,14 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
                 return false;
             }
 
+        }
+        public bool CheckUserName(string userName)
+        {
+            return db.khachhangs.Count(x => x.Ten == userName) > 0;
+        }
+        public bool CheckEmail(string email)
+        {
+            return db.khachhangs.Count(x => x.Email == email) > 0;
         }
     }
 

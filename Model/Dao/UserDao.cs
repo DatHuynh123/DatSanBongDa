@@ -1,9 +1,13 @@
 ﻿using Model.EF;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DatSanBongDaOnline.Areas.Admin.Controllers
+namespace Model.Dao
 {
-    internal class UserDao
+    public class UserDao
     {
         DatSanBongDaDbContext db = null;
         public UserDao()

@@ -1,0 +1,25 @@
+﻿@using Model.EF
+<div class="call">
+    <p><span>Need help?</span> call us <span class="number">0974-142-879</span></p>
+</div>
+<div class="account_desc">
+  
+    <ul>
+        @{
+             var  session = (khachhang)Session["TaiKhoan"];
+        }
+            @if (session== null)
+            {
+                <li><a href="/User/Login">Đăng Nhập</a>&nbsp;</li>
+                <li><a href="/User/Register">Đăng Ký</a></li>
+
+            }
+            else
+            {                
+                <li>Xin chào:@session.Ho @session.Ten</li>
+                <li> @Html.ActionLink("Đăng Xuất", "Logout", "User")</li>
+
+            }
+        </ul>
+        </div>
+   

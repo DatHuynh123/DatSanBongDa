@@ -1,6 +1,6 @@
-﻿namespace DatSanBongDaOnline.Controllers
+﻿namespace Model.View
 {
-    public class ProductViewModel
+    public class ProductViewModels
     {
         public string MaSan { get; set; }
         public string Image { set; get; }

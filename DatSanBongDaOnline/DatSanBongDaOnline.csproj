@@ -202,30 +202,29 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoaDonController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HoaDonDao.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
-    <Compile Include="Areas\Admin\Controllers\KhachHangDao.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
-    <Compile Include="Areas\Admin\Controllers\NhanVienDao.cs" />
     <Compile Include="Areas\Admin\Controllers\SanController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SanDao.cs" />
     <Compile Include="Areas\Admin\Controllers\ThanhVienController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ThanhVienDao.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserDao.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Userlogin.cs" />
+    <Compile Include="Common\UserLoginn.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\CustomerLoginModel.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\UserDao.cs" />
+    <Compile Include="Controllers\LoginModel.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageProductDAO.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductViewModel.cs" />
     <Compile Include="Controllers\SanDao.cs" />
     <Compile Include="Controllers\SlideDao.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,9 +232,11 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Client\css\jquery-ui.css" />
     <Content Include="Asset\Client\images\a0.jpg" />
     <Content Include="Asset\Client\images\a1.jpg" />
     <Content Include="Asset\Client\images\a10.jpg" />
@@ -250,22 +251,25 @@
     <Content Include="Asset\Client\images\a7.jpg" />
     <Content Include="Asset\Client\images\a8.jpg" />
     <Content Include="Asset\Client\images\a9.jpg" />
+    <Content Include="Asset\Client\js\Controllers\baseController.js" />
     <Content Include="Asset\Client\js\Controllers\cartControllers.js" />
+    <Content Include="Asset\Client\js\Controllers\ContactController.js" />
+    <Content Include="Asset\Client\js\Controllers\userController.js" />
+    <Content Include="Asset\Client\js\jquery-ui.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="data\img\1g.jpg" />
     <Content Include="data\img\2g.jpg" />
     <Content Include="data\img\3g.jpg" />
-    <Content Include="data\img\a0 - Copy.jpg" />
     <Content Include="data\img\a0.jpg" />
     <Content Include="data\img\a1.jpg" />
-    <Content Include="data\img\a10 - Copy.jpg" />
     <Content Include="data\img\a10.jpg" />
-    <Content Include="data\img\a11 - Copy.jpg" />
     <Content Include="data\img\a11.jpg" />
     <Content Include="data\img\a12.jpg" />
     <Content Include="data\img\a13.jpg" />
+    <Content Include="data\img\a16.jpg" />
+    <Content Include="data\img\a17.jpg" />
     <Content Include="data\img\a2.jpg" />
     <Content Include="data\img\a3.jpg" />
     <Content Include="data\img\a4.jpg" />
@@ -273,6 +277,7 @@
     <Content Include="data\img\a7.jpg" />
     <Content Include="data\img\a8.jpg" />
     <Content Include="data\img\a9.jpg" />
+    <Content Include="data\img\datsanonline.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -328,20 +333,25 @@
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\XemChiTiet.cshtml" />
-    <Content Include="Views\Home\DangNhap.cshtml" />
-    <Content Include="Views\Home\DangKy.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Shared\HeaderCart.cshtml" />
+    <Content Include="Views\Shared\TopMeNu.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Asset\admin\data\" />
     <Folder Include="Asset\admin\dist\" />
     <Folder Include="Asset\admin\js\" />
     <Folder Include="Asset\admin\less\" />
     <Folder Include="Asset\admin\vendor\" />
-    <Folder Include="Asset\Client\css\" />
     <Folder Include="Asset\Client\font\" />
   </ItemGroup>
   <ItemGroup>

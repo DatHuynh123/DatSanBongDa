@@ -1,4 +1,5 @@
-﻿using Model.EF;
+﻿using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,11 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
     public class ThanhVienController : Controller
     {
         // GET: Admin/ThanhVien
-        public ActionResult Index(int page = 1, int pageSize = 2)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 4)
         {
             var dao = new ThanhVienDao();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+           
             return View(model);
         }
         [HttpGet]

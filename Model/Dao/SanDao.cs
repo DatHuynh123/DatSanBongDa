@@ -3,10 +3,12 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DatSanBongDaOnline.Areas.Admin.Controllers
+namespace Model.Dao
 {
-    internal class SanDao
+    public class SanDao
     {
         DatSanBongDaDbContext db = null;
         public SanDao()
@@ -19,9 +21,14 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
             db.SaveChanges();
             return san.MaSan;
         }
-        public IEnumerable<San> ListAllPaging(int page, int pageSize)
+        public IEnumerable<San> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.Sans.OrderByDescending(x => x.MaSan).ToPagedList(page, pageSize);
+            IQueryable<San> model = db.Sans;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.TenSan.Contains(searchString) || x.MaSan.Contains(searchString) || x.Image.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.MaSan).ToPagedList(page, pageSize);
         }
         public bool Update(San entity)
         {
@@ -36,7 +43,7 @@ namespace DatSanBongDaOnline.Areas.Admin.Controllers
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //logging
                 return false;

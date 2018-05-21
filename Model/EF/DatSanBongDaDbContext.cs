@@ -14,6 +14,9 @@ namespace Model.EF
 
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
+        public virtual DbSet<CTHD> CTHDs { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<khachhang> khachhangs { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
@@ -37,6 +40,11 @@ namespace Model.EF
             modelBuilder.Entity<HoaDon>()
                 .Property(e => e.MaSan)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<CTHD>()
+                 .Property(e => e.MaSan)
+                 .IsUnicode(false);
+            
 
             modelBuilder.Entity<Image>()
                 .Property(e => e.MaImage)
